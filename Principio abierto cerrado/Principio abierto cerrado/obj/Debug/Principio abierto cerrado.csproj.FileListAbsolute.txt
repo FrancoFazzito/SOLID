@@ -1,0 +1,7 @@
+C:\Users\i7 5820K\source\repos\Principio abierto cerrado\Principio abierto cerrado\obj\Debug\Principio abierto cerrado.csprojAssemblyReference.cache
+C:\Users\i7 5820K\source\repos\Principio abierto cerrado\Principio abierto cerrado\obj\Debug\Principio abierto cerrado.csproj.CoreCompileInputs.cache
+C:\Users\i7 5820K\source\repos\Principio abierto cerrado\Principio abierto cerrado\bin\Debug\Principio abierto cerrado.exe.config
+C:\Users\i7 5820K\source\repos\Principio abierto cerrado\Principio abierto cerrado\bin\Debug\Principio abierto cerrado.exe
+C:\Users\i7 5820K\source\repos\Principio abierto cerrado\Principio abierto cerrado\bin\Debug\Principio abierto cerrado.pdb
+C:\Users\i7 5820K\source\repos\Principio abierto cerrado\Principio abierto cerrado\obj\Debug\Principio abierto cerrado.exe
+C:\Users\i7 5820K\source\repos\Principio abierto cerrado\Principio abierto cerrado\obj\Debug\Principio abierto cerrado.pdb
