@@ -1,0 +1,7 @@
+C:\Users\i7 5820K\source\repos\Principio responsabilidad unica I\Principio responsabilidad unica I\bin\Debug\Principio responsabilidad unica I.exe.config
+C:\Users\i7 5820K\source\repos\Principio responsabilidad unica I\Principio responsabilidad unica I\bin\Debug\Principio responsabilidad unica I.exe
+C:\Users\i7 5820K\source\repos\Principio responsabilidad unica I\Principio responsabilidad unica I\bin\Debug\Principio responsabilidad unica I.pdb
+C:\Users\i7 5820K\source\repos\Principio responsabilidad unica I\Principio responsabilidad unica I\obj\Debug\Principio responsabilidad unica I.csprojAssemblyReference.cache
+C:\Users\i7 5820K\source\repos\Principio responsabilidad unica I\Principio responsabilidad unica I\obj\Debug\Principio responsabilidad unica I.csproj.CoreCompileInputs.cache
+C:\Users\i7 5820K\source\repos\Principio responsabilidad unica I\Principio responsabilidad unica I\obj\Debug\Principio responsabilidad unica I.exe
+C:\Users\i7 5820K\source\repos\Principio responsabilidad unica I\Principio responsabilidad unica I\obj\Debug\Principio responsabilidad unica I.pdb
