@@ -1,0 +1,386 @@
+SOLID
+Esto es una abreviatura, ahora vamos a entrar en detalle que significa cada letra.
+
+S: Single Responsibility Principle (SRP)
+O: Open/Closed Principle (OSP)
+L: Liskov substitution Principle (LSP)
+I: Interface Segregation Principle (ISP)
+D: Dependency Inversion Principle (DIP)
+
+
+SOLID 
+Es un concepto acuñado por Robert C. Martin a partir de 5 principios básicos de la programación orientada a objetos. El objetivo de aplicar estos cinco principios es crear un código limpio y altamente mantenible, y es que el código mantenible no solo depende de programar con estilo siguiendo una guía, o de probar el código escrito, sino de la estructura con la que lo escribimos.
+Algunos de los principios se explican por si mismos, sin embargo hay otros que requieren un poco más de explicación. El orden no significa nada, se les dio ese orden debido a que solid formaba una regla mnemotécnica sencilla de recordar.
+
+
+
+
+SOLID #1: SINGLE RESPONSIBILITY PRINCIPLE (SRP) CON C#
+
+Cada módulo de tu software tiene una sola responsabilidad, por lo tanto no debería ser mutli tarea. Ejm: tu business logic, service o como lo quieran llamar.
+
+class UserService
+{
+    public bool PayMyDebts(string userID)
+    {
+        var success = false;
+
+        // El usuario necesita saber si tiene dinero en el banco para cubrir su deuda del mes
+        if (HasMoneyAtBank(userID))
+        {
+            // El usuario va a pagar sus deudas para el mes actual
+            success = true;
+        }
+
+        return success;
+    }
+
+    public bool HasMoneyAtBank(string userId)
+    {
+        return true;
+    }
+}
+
+Se entiende no?, el usuario desea saber si tiene dinero en el banco para realizar el pago de sus deudas.
+¿Cuál es el problema?, que hemos combinado 2 responsabilidades y esto va a ser más complejo de mantener/escalar. El verificar si tiene el dinero suficiente en el banco es otra responsabilidad, no le pertenece directamente al usuario porque posiblemente queramos usar esa lógica en otro lugar y vamos a tener que copiar/pegar código.
+El código refactorizado sería el siguiente:
+
+class UserService
+{
+    private readonly BankService _bankService;
+
+    public UserService(BankService bankService)
+    {
+        _bankService = bankService;
+    }
+
+    public bool PayMyDebts(string userID)
+    {
+        var success = false;
+
+        // El usuario necesita saber si tiene dinero en el banco para cubrir su deuda del mes
+        if (_bankService.HasMoneyAtBank(userID))
+        {
+            // El usuario va a pagar sus deudas para el mes actual
+            success = true;
+        }
+
+        return success;
+    }
+
+}
+
+class BankService
+{
+    public bool HasMoneyAtBank(string userId)
+    {
+        return true;
+    }
+}
+
+
+SOLID #2: OPEN/CLOSED PRINCIPLE (OSP) CON C#
+
+
+Una clase u objeto debe estar disponible para su extensión pero no para su modificación. Para este ejemplo vamos a ver los permisos que puede tener un usuario dentro del sistema, uno de ellos es "Puede realizar un pago" basado en el Rol.
+
+class Admin
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+}
+
+class User
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+}
+
+class UserFeatures
+{
+    public bool UserCanMakeAPayment(User user)
+    {
+        // Lógica de negocio
+        return true;
+    }
+
+    public bool AdminCanMakeAPayment(Admin user)
+    {
+    // Lógica de negocio
+        return true;
+    }
+}
+
+Mañana me solicitan que cree un nuevo rol, por ejemplo "Seller". La solución actual sería crear un método más SellerCanMakeAPayment. Pero el problema radica en que nuestra clase tiene que implementar más codigo.
+Por ende, estamos rompiendo el prinpcio al modificar nuestro código. Recuerda, el principio es: abierto para la extensión pero cerrado para la modificación, por lo tanto no modifiques nada, extendie la funcionalidad.
+
+abstract class BaseUser
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+}
+
+class Admin : BaseUser { }
+
+class User : BaseUser { }
+
+class UserFeatures
+{
+    public bool CanMakeAPayment(BaseUser user)
+    {
+        // Lógica de negocio
+        return true;
+    }
+}
+
+
+SOLID #3: LISKOV SUBSTITUTION PRINCIPLE CON C#
+
+Bien, tenemos una clase base abstracta que será un Robot y este puede realizar una cantidad X de punto de año al momento de atacar, pero necesita ser heredada par ser usada.
+
+abstract class Robot
+{
+    public virtual int Attack()
+    {
+    return 100; // Damage Points
+    }
+}
+
+Asimismo, la tecnología avanzado y llegaron 2 modelos nuevo pero van a heredar las características del Robot. La diferencia es que estos tienen más poder de ataque, por lo tanto habremos que sobrescribir sus métodos.
+
+class Robot2017 : Robot
+{
+    public override int Attack()
+    {
+        return 150; // Damage Points
+    }
+}
+
+class Robot2018 : Robot
+{
+    public override int Attack()
+    {
+        return 175; // Damage Points
+    }
+}
+
+Ejemplo
+Robot robot1 = new Robot2017();
+robot1.Attack(); // Daña 150
+
+Console.ReadLine();
+
+Robot robot2 = new Robot2018();
+robot2.Attack(); // Daña 175
+Finalmente, podemos usar la clase base e instanciar las otras clases sin que nuestro código sea afectado (eso dice el principio de Liskov).
+
+
+
+SOLID #4: INTERFACE SEGREGATION PRINCIPLE CON C#
+
+Partiendo del primer principio, lo que quiere decir basicamente este es que aprendas a crear interfaces para definir comportamientos y de esta manera lo puedas desacoplar libremente.
+Hagamos un ejemplo de magos y hechizos que pueden realizar:
+interface SpecialPower
+{
+    void FireAttack();
+    void SummonAMonster();
+    void TimeStop();
+}
+
+class FireMage : SpecialPower
+{
+    public void FireAttack()
+    {
+
+    }
+
+    public void SummonAMonster()
+    {
+        throw new Exception("Can't use that");
+    }
+
+    public void TimeStop()
+    {
+        throw new Exception("Can't use that");
+    }
+}
+
+class Summoner : SpecialPower
+{
+    public void FireAttack()
+    {
+        throw new Exception("Can't use that");
+    }
+
+    public void SummonAMonster()
+    {
+
+    }
+
+    public void TimeStop()
+    {
+        throw new Exception("Can't use that");
+    }
+}
+
+class GrandMage : SpecialPower
+{
+    public void FireAttack()
+    {
+
+    }
+
+    public void SummonAMonster()
+    {
+
+    }
+
+    public void TimeStop()
+    {
+
+    }
+}
+
+El problema aquí es que todos implementa la misma interfaz y realmente todo los magos no pueden hacer todo los poderes a excepción del GranMage (que es el mago más experimentado). Lo mejor que podemos hacer es dividir nuestra interfaz grande, en mini interfaces de esta manera podemos asignar comportamiento a quien queramos.
+Nuestro código mejorado quedaría así:
+interface IFireSpell
+{
+    void FireAttack();
+}
+
+interface ISummonSpell
+{
+    void SummonAMonster();
+}
+
+interface ITimeStopSpell
+{
+    void TimeStop();
+}
+
+class FireMage : IFireSpell
+{
+    public void FireAttack()
+    {
+
+    }
+}
+
+class Summoner : ISummonSpell
+{
+    public void SummonAMonster()
+    {
+
+    }
+}
+
+class GrandMage : ITimeStopSpell, IFireSpell, ISummonSpell
+{
+    public void FireAttack()
+    {
+
+    }
+
+public void SummonAMonster()
+{
+
+}
+
+    public void TimeStop()
+    {
+
+    }
+}
+De esta manera si en un futuro queremos agregar un hechizo más solo debemos crear otra interface y luego nosotros decidiremos quien lo va a implementar.
+
+SOLID #5: DEPENDENCY INVERSION PRINCIPLE CON C#
+
+Esto lo he hablado varias veces, en pocas palabras es hacer uso de inyección de dependencia para evitar de esta manera trabajar con las instancias dentro de nuestro código.
+class Mailchimp
+{
+    public void Send()
+    {
+
+    }
+}
+
+class EmailService
+{
+    public void SendAnEmail(Mailchimp mailProvider)
+    {
+        mailProvider.Send();
+    }
+}
+Todo funciona bien, podemos enviar correos usando nuestro provedor Mailchimp, pero al día siguiente nos dicen que ya no usesmos Mailchimp, sino trabajemos ahora con SendGrid.
+class Mailchimp
+{
+    public void Send()
+    {
+
+    }
+}
+
+class Sendgrid
+{
+    public void Send()
+    {
+
+    }
+}
+
+class EmailService
+{
+    public void SendAnEmailUsingSendGrid(Sendgrid mailProvider)
+    {
+    mailProvider.Send();
+    }
+
+    public void SendAnEmailUsingMailchimp(Mailchimp mailProvider)
+    {
+    mailProvider.Send();
+    }
+}
+Esto funciona pero no es óptimo y vamos a romper los principios anteriores. En este caso debemos trabajar con una interfaz de esta manera no nos interesa quien es el proveedor solo nos interesa que el comportamiento sea el mismo.
+interface IEmailProvider
+{
+    void Send();
+}
+
+class Mailchimp : IEmailProvider
+{
+    public void Send()
+    {
+
+    }
+}
+
+class Sendgrid : IEmailProvider
+{
+    public void Send()
+    {
+
+    }
+}
+
+class EmailService
+{
+    private readonly IEmailProvider _emailProvider;
+
+    public EmailService(
+    IEmailProvider emailProvider
+    )
+    {
+    _emailProvider = emailProvider;
+    }
+
+    public void Send()
+    {
+        _emailProvider.Send();
+    }
+}
+
+
+
+
+Conclusión
+Es lo que deberíamos intentar aplicar en nuestros proyectos para hacer código de calidad, se que es complicado llevarlo a la práctica pero con paciencia, buen humor y equivocándonos mucho, pronto lo haremos mejor.
