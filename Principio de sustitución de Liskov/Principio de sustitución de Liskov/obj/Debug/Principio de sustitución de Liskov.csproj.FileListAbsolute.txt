@@ -1,0 +1,7 @@
+C:\Users\i7 5820K\source\repos\Principio de sustitución de Liskov\Principio de sustitución de Liskov\bin\Debug\Principio de sustitución de Liskov.exe.config
+C:\Users\i7 5820K\source\repos\Principio de sustitución de Liskov\Principio de sustitución de Liskov\bin\Debug\Principio de sustitución de Liskov.exe
+C:\Users\i7 5820K\source\repos\Principio de sustitución de Liskov\Principio de sustitución de Liskov\bin\Debug\Principio de sustitución de Liskov.pdb
+C:\Users\i7 5820K\source\repos\Principio de sustitución de Liskov\Principio de sustitución de Liskov\obj\Debug\Principio de sustitución de Liskov.csprojAssemblyReference.cache
+C:\Users\i7 5820K\source\repos\Principio de sustitución de Liskov\Principio de sustitución de Liskov\obj\Debug\Principio de sustitución de Liskov.csproj.CoreCompileInputs.cache
+C:\Users\i7 5820K\source\repos\Principio de sustitución de Liskov\Principio de sustitución de Liskov\obj\Debug\Principio de sustitución de Liskov.exe
+C:\Users\i7 5820K\source\repos\Principio de sustitución de Liskov\Principio de sustitución de Liskov\obj\Debug\Principio de sustitución de Liskov.pdb
