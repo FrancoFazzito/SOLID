@@ -1,0 +1,7 @@
+C:\Users\i7 5820K\source\repos\Principios de segregacion de interfaz\Principios de segregacion de interfaz\bin\Debug\Principios de segregacion de interfaz.exe.config
+C:\Users\i7 5820K\source\repos\Principios de segregacion de interfaz\Principios de segregacion de interfaz\bin\Debug\Principios de segregacion de interfaz.exe
+C:\Users\i7 5820K\source\repos\Principios de segregacion de interfaz\Principios de segregacion de interfaz\bin\Debug\Principios de segregacion de interfaz.pdb
+C:\Users\i7 5820K\source\repos\Principios de segregacion de interfaz\Principios de segregacion de interfaz\obj\Debug\Principios de segregacion de interfaz.csprojAssemblyReference.cache
+C:\Users\i7 5820K\source\repos\Principios de segregacion de interfaz\Principios de segregacion de interfaz\obj\Debug\Principios de segregacion de interfaz.csproj.CoreCompileInputs.cache
+C:\Users\i7 5820K\source\repos\Principios de segregacion de interfaz\Principios de segregacion de interfaz\obj\Debug\Principios de segregacion de interfaz.exe
+C:\Users\i7 5820K\source\repos\Principios de segregacion de interfaz\Principios de segregacion de interfaz\obj\Debug\Principios de segregacion de interfaz.pdb
